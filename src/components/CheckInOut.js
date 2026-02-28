@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import getTodayKey from "../utils/time.js"
 
 export default function CheckInOut() {
   const [checkedIn, setCheckedIn] = useState(false);
@@ -62,6 +63,30 @@ export default function CheckInOut() {
     alert(`Checked out ✅ Total hours: ${hours}`);
   };
 
+  const data = JSON.parse(localStorage.getItem("officeData")) || {};
+  const daysCount = Object.keys(data).filter(date => data[date].checkIn).length;
+
+  const clearData = () => {
+    if (window.confirm("Are you sure you want to clear all data?")) {
+      localStorage.removeItem("officeData");
+      window.location.reload();
+    }
+  };
+  const markWFH = () => {
+    const data = JSON.parse(localStorage.getItem("officeData")) || {};
+
+    if (!data[todayKey]) {
+      data[todayKey] = {};
+    }
+
+    data[todayKey].wfh = true;
+
+    localStorage.setItem("officeData", JSON.stringify(data));
+    window.location.reload();
+  };
+
+  const wfhCount = Object.keys(data).filter(date => data[date].wfh === true).length;
+
   return (
     <div style={{ marginBottom: 20 }}>
       <button
@@ -82,10 +107,15 @@ export default function CheckInOut() {
 
       {checkedIn && (
         <p style={{ marginTop: 10 }}>
-          Checked in at:{" "}
-          {new Date(checkInTime).toLocaleTimeString()}
+          Checked in at: {new Date(checkInTime).toLocaleTimeString()}
         </p>
       )}
+      <div className="leftPanel">
+        <h3>Total Working Days: {daysCount}</h3>
+        <h3>WFH Days: {wfhCount}</h3>
+        <button className="wfhBtn" onClick={markWFH}>Mark WFH</button>
+        <button className="clearBtn" onClick={clearData}>Clear Month Data</button>
+      </div>
     </div>
   );
 }
