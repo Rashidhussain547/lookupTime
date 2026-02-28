@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import getTodayKey from "../utils/time.js"
 
 export default function CheckInOut() {
   const [checkedIn, setCheckedIn] = useState(false);
@@ -119,3 +118,4 @@ export default function CheckInOut() {
     </div>
   );
 }
+
