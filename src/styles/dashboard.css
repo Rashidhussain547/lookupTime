@@ -83,3 +83,30 @@ tbody tr:hover {
   align-items: center;
   margin-bottom: 10px;
 }
+
+/* WFH Button - Orange */
+.wfhBtn {
+  padding: 8px;
+  margin-top: 12px;
+  border: none;
+  border-radius: 8px;
+  background-color: #f97316;   /* orange */
+  color: white;
+  font-size: 12px;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+/* Clear Button - Red */
+.clearBtn {
+  margin-left: 5px;
+  padding: 8px;
+  margin-top: 12px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ef4444;
+  color: white;
+  font-size: 12px;
+  font-weight: 400;
+  cursor: pointer;
+}
