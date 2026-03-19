@@ -104,7 +104,9 @@ export default function CheckInOut() {
   const wfhCount = Object.keys(data).filter(date => data[date].wfh === true).length;
 
   return (
-    <div style={{ marginBottom: 20 }}>
+  <div>
+
+    <div className="btn-group">
       <button
         onClick={handleCheckIn}
         disabled={checkedIn}
@@ -120,20 +122,32 @@ export default function CheckInOut() {
       >
         Check Out
       </button>
+    </div>
 
-      {checkedIn && (
-        <p style={{ marginTop: 10 }}>
-          Checked in at: {new Date(checkInTime).toLocaleTimeString()}
-        </p>
-      )}
-      <div className="leftPanel">
-        <h3>Total Working Days: {daysCount}</h3>
-        <h3>WFH Days: {wfhCount}</h3>
-        <button className="wfhBtn" onClick={markWFH}>Mark WFH</button>
-        <button className="clearTodayBtn" onClick={clearToday}>Clear Today Record</button>
-        <button className="clearBtn" onClick={clearData}>Clear Month Data</button>
+    {checkedIn && (
+      <p style={{ marginTop: 10 }}>
+        Checked in at: {new Date(checkInTime).toLocaleTimeString()}
+      </p>
+    )}
+
+    {/* Stats */}
+    <div className="stats">
+      <div className="stat-box">
+        Working Days: {daysCount}
+      </div>
+      <div className="stat-box">
+        WFH Days: {wfhCount}
       </div>
     </div>
-  );
+
+    {/* Actions */}
+    <div style={{ marginTop: 10, display: "flex", gap: 8, flexWrap: "wrap" }}>
+      <button className="wfhBtn" onClick={markWFH}>WFH</button>
+      <button className="clearTodayBtn" onClick={clearToday}>Clear Today</button>
+      <button className="clearBtn" onClick={clearData}>Clear Month</button>
+    </div>
+
+  </div>
+);
 }
 
