@@ -37,57 +37,47 @@ export default function HistoryTable() {
   });
 
   return (
-    <div style={{ marginTop: 20, maxHeight: "400px", overflowY: "auto" }}>
-      <h3>📋 History Table</h3>
+  <div>
+    <h3>📋 History</h3>
 
-      {/* filters + export */}
-      <div style={{ marginBottom: 10, display: "flex", gap: 10 }}>
-        <label>
-          From:{" "}
-          <input
-            type="date"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
-          />
-        </label>
+    <div className="filters">
+      <input
+        type="date"
+        value={startDate}
+        onChange={(e) => setStartDate(e.target.value)}
+      />
 
-        <label>
-          To:{" "}
-          <input
-            type="date"
-            value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
-          />
-        </label>
+      <input
+        type="date"
+        value={endDate}
+        onChange={(e) => setEndDate(e.target.value)}
+      />
 
-        <ExportExcel data={exportData} />
-      </div>
+      <ExportExcel data={exportData} />
+    </div>
 
-      <table
-        style={{
-          width: "100%",
-          borderCollapse: "collapse",
-        }}
-      >
+    <div className="history-container">
+      <table>
         <thead>
-          <tr style={{ borderBottom: "1px solid #000" }}>
-            <th style={{ padding: "4px 8px" }}>Date</th>
+          <tr>
+            <th>Date</th>
             <th>Day</th>
-            <th>Check In</th>
-            <th>Check Out</th>
-            <th>Total Hours</th>
+            <th>In</th>
+            <th>Out</th>
+            <th>Hours</th>
           </tr>
         </thead>
+
         <tbody>
           {filteredDates.map((date) => {
             const record = data[date];
             const day = new Date(date).toLocaleDateString("en-US", {
-              weekday: "long",
+              weekday: "short",
             });
 
             return (
-              <tr key={date} style={{ borderBottom: "1px solid #ccc" }}>
-                <td style={{ padding: "4px 8px" }}>{date}</td>
+              <tr key={date}>
+                <td>{date}</td>
                 <td>{day}</td>
                 <td>{formatTime(record.checkIn)}</td>
                 <td>{formatTime(record.checkOut)}</td>
@@ -98,5 +88,6 @@ export default function HistoryTable() {
         </tbody>
       </table>
     </div>
-  );
+  </div>
+);
 }
