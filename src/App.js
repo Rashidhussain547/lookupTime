@@ -7,25 +7,27 @@ import HistoryTable from "./components/HistoryTable";
 export default function App() {
   return (
     <div className="container">
-      <div className="left-panel">
-        <h2>Look up</h2>
 
-        <div className="card">
-          <CheckInOut />
-        </div>
-
-        <div className="card">
-          <TodaySummary />
-        </div>
-
-        <div className="card">
-          <MonthlySummary />
-        </div>
+      <div className="header">
+        <h2>Office Tracker</h2>
       </div>
 
-      <div className="right-panel">
+      <div className="card">
+        <CheckInOut />
+      </div>
+
+      <div className="card">
+        <TodaySummary />
+      </div>
+
+      <div className="card">
+        <MonthlySummary />
+      </div>
+
+      <div className="card">
         <HistoryTable />
       </div>
+
     </div>
   );
 }
