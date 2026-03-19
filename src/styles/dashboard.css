@@ -111,21 +111,3 @@ tbody tr:hover {
   cursor: pointer;
 }
 
-.clearTodayBtn {
-  width: 100%;
-  padding: 12px;
-  margin-top: 12px;
-  border: none;
-  border-radius: 8px;
-  background-color: #facc15; /* yellow */
-  color: #000;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-.clearTodayBtn:hover {
-  background-color: #eab308;
-  transform: translateY(-2px);
-}
