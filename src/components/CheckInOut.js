@@ -84,7 +84,7 @@ export default function CheckInOut() {
     window.location.reload();
   };
   const clearToday = () => {
-  const today = getTodayKey();
+  const today = new Date().toISOString().split("T")[0];
   const data = JSON.parse(localStorage.getItem("officeData")) || {};
 
   if (!data[today]) {
