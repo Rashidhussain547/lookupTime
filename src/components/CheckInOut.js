@@ -24,16 +24,16 @@ export default function CheckInOut() {
       alert("Already checked in!");
       return;
     }
-const now = new Date();
+const nowManual = new Date();
 
 if (manualCheckIn) {
   const [hours, minutes] = manualCheckIn.split(":");
 
-  now.setHours(hours);
-  now.setMinutes(minutes);
-  now.setSeconds(0);
+  nowManual.setHours(hours);
+  nowManual.setMinutes(minutes);
+  nowManual.setSeconds(0);
 }
-    checkIn: now.toISOString()
+    checkIn: nowManual.toISOString()
     const now = new Date().toISOString();
 
     data[todayKey] = {
