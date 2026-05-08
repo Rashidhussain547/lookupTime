@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 export default function CheckInOut() {
   const [checkedIn, setCheckedIn] = useState(false);
   const [checkInTime, setCheckInTime] = useState(null);
+  const [manualCheckIn, setManualCheckIn] = useState("");
+  const [manualCheckOut, setManualCheckOut] = useState("");
 
   const todayKey = new Date().toISOString().split("T")[0];
 
@@ -22,7 +24,16 @@ export default function CheckInOut() {
       alert("Already checked in!");
       return;
     }
+const now = new Date();
 
+if (manualCheckIn) {
+  const [hours, minutes] = manualCheckIn.split(":");
+
+  now.setHours(hours);
+  now.setMinutes(minutes);
+  now.setSeconds(0);
+}
+    checkIn: now.toISOString()
     const now = new Date().toISOString();
 
     data[todayKey] = {
@@ -42,7 +53,15 @@ export default function CheckInOut() {
       alert("Pehle check in karo");
       return;
     }
+const now = new Date();
 
+if (manualCheckOut) {
+  const [hours, minutes] = manualCheckOut.split(":");
+
+  now.setHours(hours);
+  now.setMinutes(minutes);
+  now.setSeconds(0);
+}
     if (data[todayKey]?.checkOut) {
       alert("Already checked out!");
       return;
@@ -123,7 +142,25 @@ export default function CheckInOut() {
         Check Out
       </button>
     </div>
+<div className="manual-time-section">
+  <div className="time-input-group">
+    <label>Manual Check-In</label>
+    <input
+      type="time"
+      value={manualCheckIn}
+      onChange={(e) => setManualCheckIn(e.target.value)}
+    />
+  </div>
 
+  <div className="time-input-group">
+    <label>Manual Check-Out</label>
+    <input
+      type="time"
+      value={manualCheckOut}
+      onChange={(e) => setManualCheckOut(e.target.value)}
+    />
+  </div>
+</div>
     {checkedIn && (
       <p style={{ marginTop: 10 }}>
         Checked in at: {new Date(checkInTime).toLocaleTimeString()}
